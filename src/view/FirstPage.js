@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 // import './App.css';
+import createContainer from '@/utils/createContainer'
 
 class App extends Component {
+  componentDidMount() {
+    // this.props.fetchAdminuserinfo({
+    //   phone: 'my fesjdfoishojj'
+    // })
+    this.props.addTest('哈哈哈哈')
+  }
   render() {
     console.log('-------props:', this.props)
     return (
@@ -18,5 +25,13 @@ class App extends Component {
     );
   }
 }
+// export default App
 
-export default App;
+export default createContainer(
+  ({ app }) => {
+      return {
+      }
+  },        // mapStateToProps,
+  require('@/redux/actions/test').default,    // mapActionCreators,
+  App // 木偶组件
+)
