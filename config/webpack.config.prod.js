@@ -13,6 +13,8 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
+const theme = require('../src/assets/antMobileTheme');
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -163,7 +165,7 @@ module.exports = {
               compact: true,
               plugins: ['transform-runtime', ['import', {
                 libraryName: 'antd-mobile',
-                style: 'css'
+                style: true
               }]]
             },
           },
@@ -219,9 +221,7 @@ module.exports = {
                         ],
                       },
                     },
-                    {
-                      loader: require.resolve('less-loader') // compiles Less to CSS
-                    }
+                    { loader: 'less-loader', options: { modifyVars: theme } }
                   ],
                 },
                 extractTextPluginOptions
