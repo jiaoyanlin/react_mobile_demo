@@ -1,31 +1,35 @@
 import { Button } from 'antd-mobile';
 
-import  React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import FirstPage from '@/view/FirstPage'
 
-const BasicExample = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-      </ul>
-      <Button>start</Button>
-      <Button>end</Button>
+class BasicExample extends Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/topics">Topics</Link></li>
+          </ul>
+          <Button>start</Button>
+          <Button>end</Button>
 
-      <hr/>
+          <hr />
 
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
-    </div>
-  </Router>
-)
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/topics" component={Topics} />
+          <Route path="*" component={FirstPage} />
+          <Switch>
+          </Switch>
+        </div>
+      </Router>
+    )
+  }
+}
 
 const Home = () => (
   <div>
@@ -60,10 +64,10 @@ const Topics = ({ match }) => (
       </li>
     </ul>
 
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
+    <Route path={`${match.url}/:topicId`} component={Topic} />
     <Route exact path={match.url} render={() => (
       <h3>Please select a topic.</h3>
-    )}/>
+    )} />
   </div>
 )
 

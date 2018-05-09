@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 
 class App extends Component {
   render() {
+    console.log('-------props:', this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -11,7 +12,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          第一个页面测试
         </p>
       </div>
     );
