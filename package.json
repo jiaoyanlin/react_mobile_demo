@@ -2,6 +2,7 @@
   "name": "wechat_web_app",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "antd-mobile": "^2.1.8",
     "autoprefixer": "7.1.6",
@@ -95,6 +96,8 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools": "^3.4.1",

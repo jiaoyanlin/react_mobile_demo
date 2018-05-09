@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-// import './App.css';
+import './FirstPage.less';
 import createContainer from '@/utils/createContainer'
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     console.log('-------props:', this.props)
     return (
-      <div className="App">
+      <div className="less-test">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
