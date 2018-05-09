@@ -151,6 +151,10 @@ module.exports = {
             options: {
               
               compact: true,
+              plugins: ['transform-runtime', ['import', {
+                libraryName: 'antd-mobile',
+                style: 'css'
+              }]]
             },
           },
           // The notation here is somewhat confusing.
