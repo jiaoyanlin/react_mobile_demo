@@ -21,6 +21,8 @@ class App extends Component {
         <p className="App-intro">
           第一个页面测试
         </p>
+        <div className="test1">test1测试</div>
+        <div className="test2">test2测试</div>
       </div>
     );
   }
