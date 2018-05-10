@@ -262,3 +262,93 @@ module.exports = {
 
 ```
 
+#### 9、移动端适配 rem vw：
+
+（1）参考文章[基于vw等viewport视区单位配合rem响应式排版和布局](http://www.zhangxinxu.com/wordpress/2016/08/vw-viewport-responsive-layout-typography/)，使用vw和rem实现移动端适配，具体就是在引入的主css中加入以下代码：
+
+```
+html {
+  	font-size: 16px !important;
+}
+
+@media screen and (min-width: 375px) {
+	html {
+		/* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
+		font-size: calc(100% + 2 * (100vw - 375px) / 39) !important;
+		font-size: calc(16px + 2 * (100vw - 375px) / 39) !important;
+	}
+}
+@media screen and (min-width: 414px) {
+	html {
+		/* 414px-1000px每100像素宽字体增加1px(18px-22px) */
+		font-size: calc(112.5% + 4 * (100vw - 414px) / 586) !important;
+		font-size: calc(18px + 4 * (100vw - 414px) / 586) !important;
+	}
+}
+@media screen and (min-width: 600px) {
+	html {
+		/* 600px-1000px每100像素宽字体增加1px(20px-24px) */
+		font-size: calc(125% + 4 * (100vw - 600px) / 400) !important;
+		font-size: calc(20px + 4 * (100vw - 600px) / 400) !important;
+	}
+}
+@media screen and (min-width: 1000px) {
+	html {
+		/* 1000px往后是每100像素0.5px增加 */
+		font-size: calc(137.5% + 6 * (100vw - 1000px) / 1000) !important;
+		font-size: calc(22px + 6 * (100vw - 1000px) / 1000) !important;
+	}
+}
+```
+
+通过以上代码实现：仅用css就可以根据屏幕大小动态改变html根元素的基础字号大小，从而使得页面中使用rem布局的元素实现尺寸的动态变化。
+
+（2）由于ui给出的设计稿是放大过的，比如以iPhone6的375px为基准的设计稿通常宽度时750px，为了后期书写代码的方便，这里使用less将由设计稿量出的px尺寸转换成rem，省去自己计算rem的麻烦：
+
+```
+/*
+* .less文件
+* iPhone6的375px尺寸作为16px基准（即此时1rem对应16px），
+* 而此时设计稿对应的宽为750px，
+* 所以移动端的rem大小 = 设计稿中量出的尺寸/2/16 rem
+*/
+
+.pxtorem(@pro, @px) {
+    @{pro}: (@px / 16 / 2) * 1rem;
+}
+.test1 {
+    .pxtorem(width, 200);
+    .pxtorem(height, 200);
+    .pxtorem(font-size, 32);
+    background: #eee;
+}
+.test2 {
+    width: 100px;
+    height: 100px;
+    font-size: 16px;
+    background: #ddd;
+}
+```
+
+放入实例中可以看到当屏幕为375px时，test1和test2两个元素大小、字号都是一致的，但是test1的大小、字号会随着屏幕变化而变化，而test2不会。
+
+#### 10、使用less解决Retina屏幕1px边框问题：
+
+（1）引入src/assets/less文件夹下的1px.less文件（详见项目文件夹下的源码）；
+
+（2）使用方法：
+
+```
+// .less文件中
+
+@import 'assets/less/1px.less';
+
+.test1 {
+    .pxtorem(width, 200);
+    .pxtorem(height, 200);
+    .pxtorem(font-size, 32);
+    .b-1px(red, 0); // 全边框，参数为（边框颜色，圆角大小）
+    // .b-1px(red, 10px);
+    // .b-1px-t(red); // 上边框，其余还有b-1px-b、b-1px-tb、b-1px-l、b-1px-r
+}
+```

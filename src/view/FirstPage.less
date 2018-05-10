@@ -3,8 +3,8 @@
 * 而此时设计稿对应的宽为750px，
 * 所以移动端的rem大小= 设计稿中量出的尺寸/2/16 rem
 */
-
-@base: #f938ab;
+@import '../assets/less/1px.less';
+@base: #fff;
 .pxtorem(@pro, @px) {
   @{pro}: (@px / 16 / 2) * 1rem;
 }
@@ -12,15 +12,17 @@
   background: @base;
 }
 .test1 {
-  // font-size: 1rem;
   .pxtorem(width, 200);
   .pxtorem(height, 200);
   .pxtorem(font-size, 32);
-  background: #eee;
+  .b-1px(red, 0);
+  // .b-1px(red, 10px);
+  // .b-1px-t(red);
 }
 .test2 {
   font-size: 16px;
   width: 100px;
   height: 100px;
   background: #ddd;
+  border: 1px solid red;
 }
