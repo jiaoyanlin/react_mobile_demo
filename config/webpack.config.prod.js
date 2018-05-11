@@ -102,6 +102,8 @@ module.exports = {
       'react-native': 'react-native-web',
       '@': resolve('src'),
       '@view': resolve('src/view'),
+      '@assets': resolve('src/assets'),
+      '@components': resolve('src/components'),
       '@actions': resolve('src/redux/actions'),
       '@reducers': resolve('src/redux/reducers'),
       '@store': resolve('src/redux/store'),

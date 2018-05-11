@@ -1,3 +1,5 @@
+> 本笔记主要记录使用create-react-app一步步完善react移动端框架的过程，包括引入react-router、redux、redux、less、antd等。
+
 #### 1、项目初始化：
 
 ```
